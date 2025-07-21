@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Welcome to the Foodie App</h1>
-
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <h5>{{ category }}</h5>
+                    <p><a href="{% url 'foodie_app:show' category.id %} ">Go to recipes</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No categories available.</p>
+    {% endif %}
 {% endblock content %}

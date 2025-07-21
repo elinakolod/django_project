@@ -5,7 +5,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
     ingredients = models.TextField()
-    directions = models.TextField()
+    instructions = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
