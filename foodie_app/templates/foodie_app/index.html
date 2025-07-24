@@ -10,6 +10,7 @@
                 </li>
             {% endfor %}
         </ul>
+        <a href="{% url 'foodie_app:create' %}">Add a new category</a>
     {% else %}
         <p>No categories available.</p>
     {% endif %}

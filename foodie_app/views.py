@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from foodie_app.models import Category
 from recipes.models import Recipe
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, CreateView
+from foodie_app.forms import CategoryForm
 
 class IndexView(ListView):
     model = Category
@@ -18,3 +19,8 @@ class ShowView(View):
             'category': category,
         }
         return render(request, 'recipes/index.html', context)
+
+class NewView(CreateView):
+    template_name = 'foodie_app/new.html'
+    success_url = '/'
+    form_class = CategoryForm
