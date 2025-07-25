@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView, View
 
 from recipes.models import Recipe
+from sandbox.forms import FeedbackForm
+from sandbox.models import Feedback
 
 def index(request):
     recipes = Recipe.objects.all()
@@ -9,6 +12,27 @@ def index(request):
         'recipes': recipes
     }
     return render(request, 'sandbox/index.html', context)
+
+def thank_you(request):
+    return HttpResponse("Thank you for your feedback!")
+
+def feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            Feedback.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                comment=form.cleaned_data['comment'],
+                satisfaction=form.cleaned_data['satisfaction']
+            )
+            return redirect('sandbox:thank_you')
+    else:
+        form = FeedbackForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'sandbox/feedback_form.html', context)
 
 class RecipeListView(ListView):
     model = Recipe

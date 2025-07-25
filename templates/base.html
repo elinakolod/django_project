@@ -9,7 +9,10 @@
     </head>
     <body>
         <header>
-            <h1><a href="{% url "foodie_app:index" %}">Foodie App</a></h1>
+            <h1>
+                <a href="{% url "foodie_app:index" %}">Foodie App</a>
+                <a href="{% if category %}{% url 'recipes:new_with_category' category.id %}{% else %}{% url 'recipes:new' %}{% endif %}">Add recipe</a>
+            </h1>
         </header>
         <nav>
             <ul>

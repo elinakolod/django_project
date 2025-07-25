@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Add Recipe to {% if category %}{{ category }}{% endif %} </h1>
+    <h1>Feedback Form</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Recipe</button>
+        <button type="submit">Submit Feedback</button>
     </form>
 {% endblock content %}

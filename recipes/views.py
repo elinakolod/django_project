@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
+from foodie_app.models import Category
 from recipes.forms import RecipeForm
 from .models import Recipe
 from django.views.generic import ListView, DetailView, View
@@ -20,8 +21,10 @@ class NewView(View):
     form_class = RecipeForm
 
     def get(self, request, *args, **kwargs):
+        category = Category.objects.get(id=kwargs.get('category_id')) if 'category_id' in kwargs else None
         context = {
-            'form': self.form_class
+            'form': self.form_class(initial={'category': category} if category else {}),
+            'category': category
         }
         return render(request, self.template_name, context)
 

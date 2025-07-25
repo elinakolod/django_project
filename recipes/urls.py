@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>', views.ShowView.as_view(), name='show'),
     path('new/', views.NewView.as_view(), name='new'),
+    path('new/category/<int:category_id>/', views.NewView.as_view(), name='new_with_category'),
 ]
