@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Foodie - Discover and share amazing recipes.">
+        <meta name="keywords" content="food, recipes, cooking, foodie">
+        <title>Foddie</title>
+    </head>
+    <body>
+        <header>
+            <h1>
+                <a href="{% url "foodie_app:index" %}">Foodie App</a>
+                {% if user.is_authenticated %}
+                    <a href="{% if category %}{% url 'recipes:new_with_category' category.id %}{% else %}{% url 'recipes:new' %}{% endif %}">Add recipe</a>
+                {% endif %}
+            </h1>
+            <div>
+                <p>
+                    {% if user.is_authenticated %}
+                        Welcome, {{ user }}!
+                        <form action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}">Login</a>|<a href="{% url 'accounts:register' %}">Register</a>
+                    {% endif %}
+                </p>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'foodie_app:index' %}">Home</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>

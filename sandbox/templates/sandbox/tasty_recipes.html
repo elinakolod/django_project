@@ -1,0 +1,14 @@
+
+{% extends "base.html" %}
+{% block content %}
+    {% if recipes %}
+        <h1>Tasty Items</h1>
+        <ul>
+            {% for recipe in recipes %}
+                <li><a href="{% url "sandbox:food_details" recipe.id %}">{{ recipe }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tasty items available.</p>
+    {% endif %}
+{% endblock content %}

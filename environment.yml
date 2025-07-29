@@ -1,0 +1,8 @@
+name: foodie
+channels:
+ - defaults
+dependencies:
+- python=3.13.5
+- python-dotenv
+- pip
+- django

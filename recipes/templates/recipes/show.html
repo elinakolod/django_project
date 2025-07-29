@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h1>Recipe</h1>
+    </div>
+    {% if recipe %}
+        <div>
+            <h3>{{ recipe.name }}</h3>
+            <p>{{ recipe.description }}</p>
+            <p><i>Ingredients:</i> {{ recipe.ingredients }}</p>
+            <p><i>Instructions:</i> <div>{{ recipe.instructions }}</div></p>
+        </div>
+    {% else %}
+        <p>No description available.</p>
+    {% endif %}
+    <div>
+        <a href="{% url 'recipes:index' %}"><--Back to Recipes</a>
+    </div>
+{% endblock content %}
