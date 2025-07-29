@@ -22,5 +22,6 @@ urlpatterns = [
     path('sandbox/', include('sandbox.urls')),
     path('recipes/', include('recipes.urls')),
     path('comments/', include('comments.urls')),
+    path('accounts/', include('accounts.urls')),
     path('', include('foodie_app.urls')),
 ]
