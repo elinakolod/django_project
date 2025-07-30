@@ -13,7 +13,7 @@ class IndexView(ListView):
 
 class ShowView(DetailView):
     model = Recipe
-    template_name = 'sandbox/show.html'
+    template_name = 'recipes/show.html'
     context_object_name = 'recipe'
 
 class NewView(View):

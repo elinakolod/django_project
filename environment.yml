@@ -1,8 +1,43 @@
 name: foodie
 channels:
- - defaults
+  - defaults
 dependencies:
-- python=3.13.5
-- python-dotenv
-- pip
-- django
+  - asgiref=3.8.1
+  - bzip2=1.0.8
+  - ca-certificates=2025.2.25
+  - click=8.1.8
+  - django=5.2
+  - expat=2.7.1
+  - libcxx=17.0.6
+  - libffi=3.4.4
+  - libmpdec=4.0.0
+  - ncurses=6.4
+  - openssl=3.0.16
+  - pip=25.1
+  - python=3.13.5
+  - python-dotenv=1.1.0
+  - python_abi=3.13
+  - readline=8.2
+  - setuptools=78.1.1
+  - sqlite=3.45.3
+  - sqlparse=0.5.2
+  - tk=8.6.14
+  - typing_extensions=4.12.2
+  - tzdata=2025b
+  - wheel=0.45.1
+  - xz=5.6.4
+  - zlib=1.2.13
+  - pip:
+      - colorama==0.4.6
+      - cssbeautifier==1.15.4
+      - django-bootstrap5==25.2
+      - djlint==1.36.4
+      - editorconfig==0.17.1
+      - jsbeautifier==1.15.4
+      - json5==0.12.0
+      - pathspec==0.12.1
+      - pyyaml==6.0.2
+      - regex==2024.11.6
+      - six==1.17.0
+      - tqdm==4.67.1
+prefix: /opt/homebrew/Caskroom/miniconda/base/envs/foodie
