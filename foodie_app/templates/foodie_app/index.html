@@ -1,16 +1,16 @@
 {% extends "base.html" %}
+{% block page_header %}
+    <h2>Categories</h2>
+{% endblock page_header %}
 {% block content %}
-    <h1>Welcome to the Foodie App</h1>
     {% if categories %}
-        <ul>
+        <ul class="list-group list-group-flush">
             {% for category in categories %}
-                <li>
-                    <h5>{{ category }}</h5>
-                    <p><a href="{% url 'foodie_app:show' category.id %} ">Go to recipes</a></p>
+                <li class="list-group-item">
+                    <b><a href="{% url 'foodie_app:show' category.id %}" class="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-25-hover">{{ category }}</a></b>
                 </li>
             {% endfor %}
         </ul>
-        <a href="{% url 'foodie_app:create' %}">Add a new category</a>
     {% else %}
         <p>No categories available.</p>
     {% endif %}

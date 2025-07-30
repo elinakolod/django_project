@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block page_header %}
+    <h2>Add new Recipe {% if category %}to {{ category }}{% endif %}</h2>
+{% endblock page_header %}
 {% block content %}
-    <h1>Add Recipe to {% if category %}{{ category }}{% endif %} </h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Recipe</button>
+        {% bootstrap_form_errors form %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type='submit' content='Save' %}
     </form>
+    <div class="mt-5">
+        <a href="{% url 'foodie_app:index' %}" class="pt-5 link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Back to Categories</a>
+    </div>
 {% endblock content %}

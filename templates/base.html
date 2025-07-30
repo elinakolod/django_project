@@ -6,37 +6,53 @@
         <meta name="description" content="Foodie - Discover and share amazing recipes.">
         <meta name="keywords" content="food, recipes, cooking, foodie">
         <title>Foddie</title>
+        {% load django_bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
     </head>
     <body>
-        <header>
-            <h1>
-                <a href="{% url "foodie_app:index" %}">Foodie App</a>
-                {% if user.is_authenticated %}
-                    <a href="{% if category %}{% url 'recipes:new_with_category' category.id %}{% else %}{% url 'recipes:new' %}{% endif %}">Add recipe</a>
-                {% endif %}
-            </h1>
-            <div>
-                <p>
-                    {% if user.is_authenticated %}
-                        Welcome, {{ user }}!
-                        <form action="{% url 'accounts:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Logout</button>
-                        </form>
-                    {% else %}
-                        <a href="{% url 'accounts:login' %}">Login</a>|<a href="{% url 'accounts:register' %}">Register</a>
-                    {% endif %}
-                </p>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url "foodie_app:index" %}">Foodie App</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% if category %}{% url 'recipes:new_with_category' category.id %}{% else %}{% url 'recipes:new' %}{% endif %}">Add recipe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'foodie_app:create' %}">Add Category</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <div class="d-flex">
+                        {% if user.is_authenticated %}
+                            <div class="disabled d-inline m-3" aria-disabled="true">Welcome, {{ user }}!</div>
+                            <form action="{% url 'accounts:logout' %}" method="post">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-dark d-inline m-3" type="submit">Logout</button>
+                            </form>
+                        {% else %}
+                            <a class="nav-link active d-inline m-3" aria-current="page" href="{% url 'accounts:login' %}">Login</a>
+                            <a class="nav-link active d-inline m-3" aria-current="page" href="{% url 'accounts:register' %}">Register</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'foodie_app:index' %}">Home</a></li>
-            </ul>
         </nav>
-        <div class="container">
-            {% block content %}
-            {% endblock content %}
-        </div>
+        <main class="container">
+            <div class="p-2 m-2 border-bottom">
+                {% block page_header %}
+                {% endblock page_header %}
+            </div>
+            <div class="p-2 m-2">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </main>
     </body>
 </html>
